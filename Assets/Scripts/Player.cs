@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
 
     public void Kill()
     {
+        _currentHealth = 0;
+        healthText.text = "Health: " + _currentHealth;
         gameObject.SetActive(false);
         //play partciles & sounds
     }

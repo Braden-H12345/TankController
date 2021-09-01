@@ -46,6 +46,8 @@ public abstract class CollectableBase : MonoBehaviour
         if(_collectParticles != null)
         {
             _collectParticles = Instantiate(_collectParticles, transform.position, Quaternion.identity);
+            _collectParticles.Play();
+            
         }
 
         if(_collectSound != null)
