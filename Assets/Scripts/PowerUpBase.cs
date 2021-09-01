@@ -17,6 +17,13 @@ public abstract class PowerUpBase : MonoBehaviour
     private float timeElapsed = 0f;
     private bool entered = false;
 
+
+    Rigidbody _rb;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         Player player = other.gameObject.GetComponent<Player>();
@@ -45,7 +52,11 @@ public abstract class PowerUpBase : MonoBehaviour
         }
     }
 
-
+    protected virtual void Movement(Rigidbody rb)
+    {
+        Quaternion turnOffset = Quaternion.Euler(-1, 0, 1);
+        rb.MoveRotation(_rb.rotation * turnOffset);
+    }
 
 
     private void Update()
@@ -64,4 +75,8 @@ public abstract class PowerUpBase : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        Movement(_rb);
+    }
 }
