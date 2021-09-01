@@ -45,4 +45,12 @@ public class TankController : MonoBehaviour
         // apply quaternion to the rigidbody
         _rb.MoveRotation(_rb.rotation * turnOffset);
     }
+
+    public void Update()
+    {
+        if(_moveSpeed <= 0)
+        {
+            _moveSpeed = .1f;
+        }    
+    }
 }
