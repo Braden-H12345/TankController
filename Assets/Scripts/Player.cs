@@ -12,11 +12,19 @@ public class Player : MonoBehaviour
     [SerializeField] int _maxHealth = 3;
     private int treasureCount = 0;
     int _currentHealth;
+    private bool isInvincible;
+    
+
+    public void setInvincible(bool b)
+    {
+        isInvincible = b;
+    }
 
     TankController _tankController;
     private void Awake()
     {
         _tankController = GetComponent<TankController>();
+        isInvincible = false;
     }
 
     private void Start()
@@ -38,12 +46,15 @@ public class Player : MonoBehaviour
 
     public void DecreaseHealth(int amount)
     {
-        _currentHealth -= amount;
-        healthText.text = "Health: " + _currentHealth;
-
-        if (_currentHealth <= 0)
+        if (isInvincible == false)
         {
-            Kill();
+            _currentHealth -= amount;
+            healthText.text = "Health: " + _currentHealth;
+
+            if (_currentHealth <= 0)
+            {
+                Kill();
+            }
         }
     }
 
